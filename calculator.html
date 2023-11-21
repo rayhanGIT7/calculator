@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body style="background: url(laptop.jpg) no-repeat center center fixed; background-size: cover; border-image-repeat: none;">
+
+  
+     <div class="container">
+   <div class="calculator dark">
+         
+       
+    
+            <div class="buttons">
+
+<td>
+    <<td>
+<textarea style="width: 280px; height: 120px; font-size: 30px; background-color: black; color: white; text-align: right; padding-top: 40px;" id="result_show"></textarea>
+
+</td>
+
+</td>
+
+
+    <table>
+
+        <tr>
+           
+        </tr>
+        <tr>
+            <td><button class="btn-operator" onclick="clearDisplay()">AC</button></td>
+            <td><button class="btn-operator" value="/" onclick="show('/')">/</button></td>
+            <td><button class="btn-operator" value="*" onclick="show('*')">*</button></td>
+     
+            <td><button class="btn-operator" onclick="single_delete()">⌫</button></td>
+
+        </tr>
+        <tr>
+            <td><button class="btn-number" value="7" onclick="show('7')">7</button></td>
+            <td><button class="btn-number" value="8" onclick="show('8')">8</button></td>
+            <td><button class="btn-number" value="9" onclick="show('9')">9</button></td>
+            <td><button class="btn-operator" value="-" onclick="show('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-number" value="4" onclick="show('4')">4</button></td>
+            <td><button class="btn-number" value="5" onclick="show('5')">5</button></td>
+            <td><button class="btn-number" value="6" onclick="show('6')">6</button></td>
+            <td><button class="btn-operator" value="+" onclick="show('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-number" value="1" onclick="show('1')">1</button></td>
+            <td><button class="btn-number" value="2" onclick="show('2')">2</button></td>
+            <td><button class="btn-number" value="3" onclick="show('3')">3</button></td>
+             <td><button class="btn-number" value="." onclick="show('.')">.</button></td>
+        
+        </tr>
+        <tr>
+        <!--     modulase -->
+             <!--  <td><button class="btn-operator" value="%" onclick="show('%')">%</button></td> -->
+
+            <td><button class="btn-operator" value="(" onclick="show('(')">(</button></td>
+            <td><button class="btn-number" value="0" onclick="show('0')">0</button></td>
+            <td><button class="btn-operator" value=")" onclick="show(')')">)</button></td>
+            <td rowspan="2"><button class="btn-equal" onclick="calculateResult()">=</button></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function clearDisplay() {
+        document.getElementById("result_show").value = "";
+
+     
+    }
+
+    let inputValues = ""; 
+
+    function show(inputValue) {
+        inputValues = document.getElementById("result_show").value += inputValue;
+    }
+
+   function calculateResult() {
+    let check = document.getElementById("result_show").value;
+
+    // Check  the input  valid or invalid
+
+    if (/[/+\-*\/]{2,}/.test(check)) {
+        let error = "Invalid input";
+        document.getElementById("result_show").value = error;
+    } else if(/[/+\-*\/]{3,}/.test(check)) {
+        let error = "Invalid input";
+        document.getElementById("result_show").value = error;
+
+    }else if(/[@#<>$&'}\,]/.test(check)) {
+        let error = "Invalid input";
+        document.getElementById("result_show").value = error;
+
+    }else if(/[a-z]/.test(check)) {
+        let error = "Invalid input";
+        document.getElementById("result_show").value = error;
+
+}
+    else {
+      
+        let input = document.getElementById("result_show").value;
+        let result = eval(input);
+        document.getElementById("result_show").value = inputValues + "\n " + result;
+    }
+}
+
+
+    function single_delete() {
+        var currentInput = document.getElementById("result_show").value;
+        document.getElementById("result_show").value = currentInput.slice(0, -1);
+    }
+</script>
+
+
+</body>
+</html>
